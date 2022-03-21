@@ -4,6 +4,8 @@ from rest_framework.exceptions import PermissionDenied
 
 
 def authorize(*permissions):
+    permissions = [permission() for permission in permissions]
+
     def decorator(func):
         def wrap(*args, **kwargs):
             self = args[0]
